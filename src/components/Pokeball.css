@@ -1,0 +1,65 @@
+:root {
+  --white: #fff;
+  --gray: #eee;
+  --red: #e53935;
+  --black: #212121;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.pokeball {
+  position: relative;
+  width: 100%; /* 👈 allow parent (Tailwind w-10 h-10) to control size */
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--red),
+    var(--red) 48%,
+    var(--black) 48%,
+    var(--black) 55%,
+    var(--white) 55%
+  );
+  border-radius: 50%;
+  border: 3px solid var(--black); /* 👈 scaled down */
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 3px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.pokeball:hover {
+  animation: shake 900ms infinite;
+}
+
+.pokeball:before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  right: 15%;
+  width: 8px;   /* 👈 smaller */
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+}
+
+.pokeball:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;  /* 👈 smaller */
+  height: 20px;
+  background-color: var(--white);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  border: 4px solid var(--black); /* 👈 scaled */
+  box-shadow: -2px -1px 0 rgba(0, 0, 0, 0.2);
+}
+
+@keyframes shake {
+  0% { transform: translateX(0) rotate(0); }
+  15% { transform: translateX(-3px) rotate(-5deg); }
+  40% { transform: translateX(-5px) rotate(-10deg); }
+  60% { transform: translateX(5px) rotate(10deg); }
+  100% { transform: translateX(0) rotate(0); }
+}
